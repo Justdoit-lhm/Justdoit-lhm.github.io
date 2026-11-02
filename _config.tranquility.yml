@@ -1,5 +1,5 @@
 # slogan: 首屏标题下的一行标语，留空则不显示（当前不设）
-email: ox0pine@gmail.com
+email: 2378323785@qq.com
 logo: "/images/logo.svg"
 
 mathjax: true # 加载 LateX 数学公式库
@@ -38,53 +38,37 @@ subpage: # 开启"子页"功能，详见 README
       description: 同步自 X 的碎片化动态
       type: twitter
       twitter:
-        username: ox0pine
+        username: qfmymbx
         limit: 20 # 最多展示最近多少条，抓取脚本的 TWITTER_LIMIT 决定入库条数
 
 index: # 配置首页个性化内容
   motto: "记录生活，分享美好"
-  poem:
-    - 秋风飘起黄叶落
-    - 岁月静好心安然
   # 关于区只放文字，不再配照片；`text` 的每一项渲染成一个段落。
   about:
     title: 关于我
     # 一个列表项渲染成一段；空行不必写，段落之间由 CSS 控制间距。
     text:
-      - 你好，我是 ox0pine。
-      - 大多数时候，我的生活都围着电脑转。白天待在实验室，读论文、跑实验，和那些不太听话的模型较劲。晚上回到自己的桌前，又开始写代码、折腾服务器。偶尔也会觉得，一整天似乎什么都没做，只是解决了一个昨天留下的问题，又遇见了几个新的问题。
-      - 不过，我还挺喜欢这样的日子。
-      - 比起单纯地使用一个工具，我总是更想知道它为什么能工作。遇到有意思的项目，就忍不住下载源码，拆开看看，再试着自己做点什么。慢慢地，便有了不少零零散散的东西：大模型应用、网站、自动化脚本，还有一些搭好之后就被遗忘在服务器角落里的小服务。
-      - 有些想法最后成了真正能用的工具，有些折腾了几个晚上，最终也没了下文。但我并不觉得这些时间是浪费。很多事情，只有亲手做过，才知道其中的门道。
-      - 这个博客也是这样一点点留下来的。
-      - 技术上的事情，我习惯记下来。可能是一次部署踩过的坑，一段折腾很久才跑通的代码，也可能只是某天发现了一个顺手的小工具。写这些东西，最初只是怕自己忘记，后来才发现，偶尔翻看过去的记录，也挺有意思。
-      - 除此之外，也写些与技术无关的日子。读过的书，参加过的比赛，某个睡不着的深夜，或者一段过了很久才想明白的心事。生活里总有一些微不足道的瞬间，当时觉得平常，过后却又舍不得忘。
-      - 说起来，这个博客也陪我折腾了好些年。从最初的 Hexo，到后来的 Hugo、WordPress，兜兜转转，最后还是回到了 Hexo。以前总想着把页面做得更漂亮、功能弄得更齐全，后来反倒觉得，能有个地方安安静静地写点东西，就已经很好。
-      - 日子还在往前走，手头的事情也总是做不完。
-      - 至于这里，就留给那些值得记住的过程吧。
+      - 你好，我是李宏明。这里记录我的技术笔记与生活随笔。
 
 foot:
   title:
-    - "秋风飘起黄叶落"
-    - "岁月静好心安然"
+    - "清风明月"
   linksRows: 4
 
-links: # 朋友
-  - name: "My GitHub"
-    url: https://github.com/ox0pine
+links: [] # 朋友；「申请友链」入口由 foot 模板按 email 自动追加
 
 social:
-  - name: "@ox0pine"
+  - name: "@Justdoit-lhm"
     icon: "/images/logo-github.svg"
-    url: https://github.com/ox0pine
-  - name: "@ox0pine"
+    url: https://github.com/Justdoit-lhm
+  - name: "@qfmymbx"
     icon: "/images/logo-twitter.svg"
-    url: https://x.com/ox0pine
+    url: https://x.com/qfmymbx
 
 contacts:
-  - name: "ox0pine@gmail.com"
+  - name: "2378323785@qq.com"
     icon: "/images/icon/icon-email.svg"
-    url: "mailto:ox0pine@gmail.com"
+    url: "mailto:2378323785@qq.com"
 
 # 未启用的第三方集成（gitalk 评论、赞赏、相关推荐、百度统计/验证、
 # Google AdSense、Algolia 搜索）连同其模板与样式一并删除，不再保留占位字段。
@@ -125,70 +109,6 @@ mermaid:
   version: latest
   options:
     startOnload: true
-
-cv:
-  enable: false
-  showInNav: false
-  iconPrefix: fas
-  keywords: 简历,ox0pine,个人简历,技术博客,秋风飘起黄叶落,田博松
-  description: ox0pine的个人简历，记录博客作者的教育背景、代表作品、工作经验和荣誉奖项。
-  title: 秋风飘起黄叶落的个人简历
-  content:
-    title: ox0pine
-    baseInfo:
-      - 28届应届硕士
-      - 大模型应用开发
-      - 前后端全栈开发
-    email: ox0pine@gmail.com
-    github: ox0pine
-    blog: 秋风飘起黄叶落のblog
-    blogHref: https://ox0pine.github.io
-    edu:
-      title: "教育背景"
-      content:
-        - 2021年 - 2025年，本科，电子科学与技术，燕山大学
-        - 2025年至今，硕士，电子科学与技术，西安电子科技大学
-    chapters:
-      - title: "代表作品"
-        icon: fa-briefcase
-        tips: 请点击项目名称查看项目详情
-        sections:
-          - title: CodeRunner
-            link: https://github.com/ox0pine/CodeRunner
-            description: 远程代码执行平台
-            content:
-              - 基于 FastAPI + React 18 构建的现代化代码执行平台，采用 JWT + Argon2 安全认证和四级用户权限体系。核心技术栈包括 FastAPI 异步框架、Ant Design UI 组件库、Docker 容器化部署和 Conda 环境管理。实现了安全沙箱代码执行、AI 智能代码生成（支持多种 AI 模型）、个人代码库管理和社区交互系统，具备完整的用户管理、日志审计和资源配限功能。项目采用单体架构设计，支持高并发处理和多租户隔离，展现了全栈开发和系统架构设计的综合能力。
-          - title: WebMonitor
-            link: https://github.com/webmonitor/WebMonitor
-            description: 智能网页内容监控与多渠道通知平台
-            content:
-              - 基于 FastAPI + React 18 构建的现代化网页内容监控平台，采用 JWT + bcrypt安全认证和基于角色的用户权限体系（管理员/普通用户）。核心技术栈包括 Selenium WebDriver 动态内容抓取、APScheduler任务调度、Material-UI 组件库和 SQLAlchemy ORM 数据持久化。实现了精准的 XPath选择器内容提取、智能变更检测算法、多邮件配置 SMTP 通知系统和任务订阅分享机制，具备完整的用户管理、监控日志审计、域名黑名单过滤和实时任务监控功能。项目采用前后端分离架构设计，支持 SQLite/PostgreSQL 数据库切换、无头 Chrome浏览器自动化和高并发任务处理，展现了全栈开发、Web自动化爬虫技术和系统架构设计的综合能力。
-
-      # - title: 工作经验
-      #   icon: fa-laptop-code
-      #   sections:
-      #     - title: 大唐翰林供奉
-      #       description: 743 - 744
-      #       content:
-      #         - 赐宫锦袍。暮春，兴庆池牡丹盛开，玄宗与杨玉环同赏，李白又奉诏作《清平调》。对御用文人生活日渐厌倦，始纵酒以自昏秽。
-      #         - 与贺知章等人结“酒中八仙”之游，玄宗呼之不朝。尝奉诏醉中起草诏书，引足令高力士脱靴，宫中人恨之，谗谤于玄宗，玄宗疏之，后玄宗赐金放还。
-      - title: 荣誉奖项
-        icon: fa-trophy
-        list: true
-        content:
-          - 河北省优秀毕业生
-          - 第21届全国大学生信息安全与对抗技术竞赛国家级二等奖
-          - 第22届中国研究生数学建模竞赛国家三等奖
-          - 第14届全国大学生数学建模竞赛省级一等奖
-      - title: 技能特长
-        icon: fa-star
-        content:
-          - 大模型应用开发：熟练掌握OpenAI GPT、Claude、文心一言等主流大模型API集成与开发，具备Prompt优化设计、Function Calling、向量数据库检索增强生成(RAG)和Agent智能体开发经验。
-          - 前后端全栈开发：精通FastAPI异步后端框架、React 18前端开发，熟悉Vue、NextJS等现代框架，掌握RESTful API设计和WebSocket实时通信技术。
-          - 数据库与数据工程：熟悉MySQL、PostgreSQL关系型数据库，掌握MongoDB、Redis等NoSQL数据库，具备数据清洗、处理和可视化分析能力。
-          - 自动化与工具开发：熟练使用n8n、Playwright等自动化工具进行工作流设计和二次开发，具备CI/CD流水线搭建和DevOps实践经验。
-          - 容器化与部署：精通Docker容器化技术和Kubernetes编排，熟悉云服务(AWS、阿里云)部署和微服务架构设计。
-          - AI工程化能力：具备模型训练优化、API服务封装、性能监控和大规模并发处理经验，熟悉LangChain、LlamaIndex等AI开发框架。
 
 search:
   path: search.json

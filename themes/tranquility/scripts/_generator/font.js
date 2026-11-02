@@ -77,8 +77,8 @@ function getSubText(hexo) {
     ...config.subpage.pages.map(page => page.description),
     ...hexo.locals.get('tags').map(tag => tag.name),
     ...config.index.about.text,
-    ...config.index.poem,
-    ...config.foot.title,
+    ...(config.index.poem || []),
+    ...(config.foot.title || []),
     ...(config.cv ? getObjValues(config.cv) : [])
   ];
 

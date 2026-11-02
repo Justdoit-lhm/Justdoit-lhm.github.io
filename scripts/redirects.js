@@ -7,26 +7,7 @@
 // a canonical at the new address (search engines move the signal, humans move
 // on). Add entries here whenever a post slug changes — the keys are the old
 // permalinks, values the new ones.
-const REDIRECTS = {
-  '/2026/04/13/github-actions-refresh-content/': '/2026/04/13/github-actions-content-editor/',
-  '/2025/11/11/how-to-install-v2ray-on-server/': '/2025/11/11/deploy-v2ray-on-server/',
-  '/2026/01/24/how-to-use-Cloudflare-Tunnel/': '/2026/01/24/cloudflare-tunnel-guide/',
-  '/2025/11/16/regret-to-read/': '/2025/11/16/graduate-school-regret/',
-  '/2025/11/17/week1/': '/2025/11/17/weekly-01-restart/',
-  '/2025/11/26/week2/': '/2025/11/26/weekly-02-goodbye-project/',
-  '/2025/12/14/week3/': '/2025/12/14/weekly-03-exams/',
-  '/2025/12/31/year1/': '/2025/12/31/2025-year-in-review/',
-  // 项目介绍曾以文章形式发布，现改为“开源作品”页里的直链卡片
-  '/2026/11/01/repopilot/': '/apps/',
-  '/2026/11/01/webmonitor/': '/apps/',
-  '/2026/11/01/webmonitor-agent/': '/apps/',
-  '/2026/10/30/qfpqhyl-top/': '/apps/',
-  '/2026/10/24/campus-connect-ddns/': '/apps/',
-  '/2026/02/08/mindflow/': '/apps/',
-  '/2026/02/06/agent-devtools/': '/apps/',
-  '/2025/12/09/server-scripts/': '/apps/',
-  '/2025/11/17/coderunner/': '/apps/'
-};
+const REDIRECTS = {};
 
 hexo.extend.generator.register('redirects', function () {
   const urlFor = this.extend.helper.get('url_for').bind(this);

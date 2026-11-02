@@ -29,7 +29,7 @@ jobs:
       # 抓不到就保留上一次的快照，不让页面变成空白
       - name: Fetch tweets
         env:
-          TWITTER_USERNAME: ox0pine
+          TWITTER_USERNAME: qfmymbx
           TWITTER_LIMIT: 20
         run: node tools/fetch-twitter.js
 

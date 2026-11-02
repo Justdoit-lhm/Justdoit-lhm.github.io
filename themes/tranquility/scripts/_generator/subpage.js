@@ -23,6 +23,14 @@ function blogGenerator(locals) {
   const config = this.config;
   const paginationDir = config.pagination_dir || 'page';
   const posts = sortSticky(locals.posts.sort(config.index_generator.order_by));
+  // 与下方空分类分支同款：0 篇文章时 /blog/ 也要成页，不能 404
+  if (posts.data.length === 0) {
+    return [{
+      path: 'blog/index.html',
+      layout: ['category'],
+      data: { name: '博客', icon: 'blog' }
+    }];
+  }
 
   return pagination('blog', posts, {
     perPage: config.index_generator.per_page,

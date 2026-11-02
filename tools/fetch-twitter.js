@@ -21,7 +21,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const OUTPUT = path.join(__dirname, '..', 'source', '_data', 'twitter.json');
-const USERNAME = process.env.TWITTER_USERNAME || 'ox0pine';
+const USERNAME = process.env.TWITTER_USERNAME || 'qfmymbx';
 const LIMIT = Number(process.env.TWITTER_LIMIT || 20);
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
   '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
