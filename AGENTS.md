@@ -46,7 +46,7 @@ Hook priority is the ordering contract between scripts. Keep the comments that s
 | `source/_data/projects.yml` | 开源作品数据：`/apps/` 的卡片直链，由 `_generator/projects.js` 读取，不为项目生成文章 |
 | `themes/tranquility/scripts/` | Theme hooks: `_generator/`, `_helper/`, `filters/` |
 | `themes/tranquility/layout/` | Nunjucks templates (`index`, `post`, `category`, `tag`, `twitter`, `cv`, `_partials/`) |
-| `themes/tranquility/source/` | Stylus CSS entries + client JS (`search.js`, `copy-code.js`, `heart-curve.js`) |
+| `themes/tranquility/source/` | Stylus CSS entries + client JS (`search.js`, `copy-code.js`, `toc.js`); 首页首屏背景是 `_partials/components/day-night-scene.njk` 的纯 SVG+CSS「昼夜鹿鸣」动画（30s 循环，keyframes 在 `index.styl` 的 `$scene-cycle`） |
 | `themes/tranquility/_font/` | LXGW WenKai sources (`normal.ttf` = Regular, `bold.ttf` = Medium, ~49 MB, SIL OFL); `_generator/font.js` subsets them to every glyph used by posts, pages, tweets and config |
 | `_config.yml` / `_config.tranquility.yml` | Hexo core config / theme config override |
 

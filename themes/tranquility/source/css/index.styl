@@ -29,22 +29,23 @@ for item in hexo-config('timeline.items') {
   @extend .wall-bg;
   z-index: 2;
   content: ' ';
-  background-color: rgba(255, 255, 255, 0.95);
+  /* 背景是「昼夜鹿鸣」动画：面纱只负责压住画面保证标题可读，
+     留出足够透明度让昼夜交替清晰可见（见下方 .wall-scene）。 */
+  background-color: rgba(255, 255, 255, 0.6);
   transition: background-color 150ms ease;
 }
 
-/* The backdrop is a watermark: nearly invisible at rest, legible while the
-   pointer is over the cover. Touch screens have no hover, so they keep a
-   slightly thinner veil instead and see the leaves drift. */
+/* 静止时画面退为水彩般的底子，悬停时揭开幕布看完整动画；触屏没有
+   hover，取一个折中透明度。 */
 @media (hover: hover) and (pointer: fine) {
   .wall-main:hover+.wall-bg::before {
-    background-color: rgba(255, 255, 255, 0.74);
+    background-color: rgba(255, 255, 255, 0.32);
   }
 }
 
 @media (hover: none) {
   .wall-bg::before {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -66,12 +67,15 @@ for item in hexo-config('timeline.items') {
   line-height: 1.15;
   overflow-wrap: anywhere;
   animation: flyIn 320ms $ease-out;
+  /* 夜空帧下背景偏深，白色光晕保证标题始终可读。 */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 20px rgba(255, 255, 255, 0.8);
 }
 
 .wall-subtitle {
   font-size: clamp(1.15rem, 3.4vw, 2.25rem);
   font-weight: bold;
   margin-top: 10px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 20px rgba(255, 255, 255, 0.8);
 }
 
 .wall-description {
@@ -82,7 +86,14 @@ for item in hexo-config('timeline.items') {
   letter-spacing: 0.2em;
 }
 
-#leaf-field {
+/* ------------------------------------------------------------------ *
+ * 昼夜壁纸（day-night-scene.njk）：SVG 场景 + CSS 动画。
+ * 一个循环 $scene-cycle：破晓 → 白昼 → 暮色 → 星夜，昼夜各饮一次水。
+ * 所有时序都在 keyframes 百分位里，改周期只改 $scene-cycle 一处。
+ * ------------------------------------------------------------------ */
+$scene-cycle = 30s;
+
+.wall-scene {
   position: absolute;
   top: 0;
   left: 0;
@@ -91,6 +102,78 @@ for item in hexo-config('timeline.items') {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* —— 基色：同时是动画被禁用时的静态白昼帧 —— */
+.hill--back { fill: #8fa5b8; }
+.hill--front { fill: #66788c; }
+.bank { fill: #2b3648; }
+.shimmer { fill: #aebfd4; opacity: 0.08; }
+.glint--sun { fill: #ffe6bd; opacity: 0.4; }
+.glint--moon { fill: #cfd9ec; opacity: 0; }
+.deer--near { fill: #222c3a; }
+.deer--far { fill: #3a4656; }
+.deer-antler {
+  fill: none;
+  stroke: #222c3a;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+/* —— 天空：暮色与星夜两层在固定时刻盖上来 —— */
+.sky--dusk,
+.sky--night {
+  opacity: 0;
+}
+
+.sky--dusk { animation: sceneDusk $scene-cycle linear infinite; }
+.sky--night { animation: sceneNight $scene-cycle linear infinite; }
+.stars { opacity: 0; animation: sceneStars $scene-cycle linear infinite; }
+
+/* —— 日 / 月：同一条东升西落的弧 —— */
+.sun {
+  transform: translate(700px, 240px);
+  animation: sunTrack $scene-cycle linear infinite;
+}
+
+.moon {
+  opacity: 0;
+  animation: moonTrack $scene-cycle linear infinite;
+}
+
+/* —— 云只在白昼现身 —— */
+.cloud { animation: cloudShow $scene-cycle linear infinite; }
+
+/* —— 湖面微光与日月倒影 —— */
+.shimmer--1 { animation: shimmer 8s ease-in-out infinite; }
+.shimmer--2 { animation: shimmer 8s ease-in-out infinite -2.6s; }
+.shimmer--3 { animation: shimmer 8s ease-in-out infinite -5.2s; }
+.glint--sun { animation: glintSun $scene-cycle linear infinite; }
+.glint--moon { animation: glintMoon $scene-cycle linear infinite; }
+
+/* —— 麋鹿：抬头/低头两份姿态交叉淡入 —— */
+.deer-neck--up { animation: neckUp $scene-cycle linear infinite; }
+.deer-neck--down { opacity: 0; animation: neckDown $scene-cycle linear infinite; }
+
+/* —— 涟漪：以自身中心放大淡出 —— */
+.ripple {
+  fill: none;
+  stroke: #d8e2ee;
+  stroke-width: 2;
+  opacity: 0;
+  transform: scale(0.15);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ripple--day { animation: rippleDay $scene-cycle linear infinite; }
+.ripple--night { animation: rippleNight $scene-cycle linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wall-scene,
+  .wall-scene * {
+    animation: none !important;
+  }
 }
 
 /* The couplet runs down the right margin as a vertical inscription, the way
@@ -129,6 +212,7 @@ for item in hexo-config('timeline.items') {
   font-size: 14px;
   letter-spacing: 0.34em;
   color: $black-light;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 2px 14px rgba(255, 255, 255, 0.75);
 
   &::before {
     content: '';
@@ -138,6 +222,130 @@ for item in hexo-config('timeline.items') {
     margin-bottom: 12px;
     background-color: $grey-light;
   }
+}
+
+/* —— 昼夜壁纸 keyframes（百分位 = 30s 内的时刻） —— */
+@keyframes sceneDusk {
+  0% { opacity: 1; }
+  7% { opacity: 0; }
+  40% { opacity: 0; }
+  47% { opacity: 1; }
+  55% { opacity: 0; }
+  88% { opacity: 0; }
+  96% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes sceneNight {
+  0% { opacity: 0; }
+  42% { opacity: 0; }
+  50% { opacity: 1; }
+  88% { opacity: 1; }
+  97% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sceneStars {
+  0% { opacity: 0; }
+  48% { opacity: 0; }
+  54% { opacity: 1; }
+  84% { opacity: 1; }
+  92% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sunTrack {
+  0% { transform: translate(120px, 560px); opacity: 0; }
+  4% { transform: translate(300px, 330px); opacity: 1; }
+  25% { transform: translate(800px, 85px); opacity: 1; }
+  44% { transform: translate(1340px, 330px); opacity: 1; }
+  49% { transform: translate(1540px, 580px); opacity: 1; }
+  51% { transform: translate(1540px, 580px); opacity: 0; }
+  100% { transform: translate(1540px, 580px); opacity: 0; }
+}
+
+@keyframes moonTrack {
+  0% { transform: translate(160px, 580px); opacity: 0; }
+  49% { transform: translate(160px, 580px); opacity: 0; }
+  53% { transform: translate(320px, 360px); opacity: 1; }
+  75% { transform: translate(820px, 95px); opacity: 1; }
+  93% { transform: translate(1360px, 360px); opacity: 1; }
+  99% { transform: translate(1540px, 580px); opacity: 1; }
+  100% { transform: translate(1540px, 580px); opacity: 0; }
+}
+
+@keyframes cloudShow {
+  0% { transform: translateX(-40px); opacity: 0; }
+  10% { transform: translateX(0); opacity: 0.55; }
+  38% { transform: translateX(70px); opacity: 0.55; }
+  47% { transform: translateX(110px); opacity: 0; }
+  100% { transform: translateX(110px); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.08; }
+  50% { opacity: 0.16; }
+  100% { opacity: 0.08; }
+}
+
+@keyframes glintSun {
+  0% { opacity: 0; }
+  8% { opacity: 0; }
+  14% { opacity: 0.4; }
+  36% { opacity: 0.4; }
+  44% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes glintMoon {
+  0% { opacity: 0; }
+  52% { opacity: 0; }
+  58% { opacity: 0.45; }
+  84% { opacity: 0.45; }
+  92% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes neckUp {
+  0% { opacity: 1; }
+  16% { opacity: 1; }
+  19% { opacity: 0; }
+  26% { opacity: 0; }
+  29% { opacity: 1; }
+  64% { opacity: 1; }
+  67% { opacity: 0; }
+  74% { opacity: 0; }
+  77% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes neckDown {
+  0% { opacity: 0; }
+  16% { opacity: 0; }
+  19% { opacity: 1; }
+  26% { opacity: 1; }
+  29% { opacity: 0; }
+  64% { opacity: 0; }
+  67% { opacity: 1; }
+  74% { opacity: 1; }
+  77% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes rippleDay {
+  0% { transform: scale(0.15); opacity: 0; }
+  18% { transform: scale(0.15); opacity: 0; }
+  22% { transform: scale(0.9); opacity: 0.5; }
+  29% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes rippleNight {
+  0% { transform: scale(0.15); opacity: 0; }
+  65% { transform: scale(0.15); opacity: 0; }
+  69% { transform: scale(0.9); opacity: 0.5; }
+  76% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 
 @keyframes flyIn {
