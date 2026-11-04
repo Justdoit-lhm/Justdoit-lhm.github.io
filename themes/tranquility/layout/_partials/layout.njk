@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {%- set seo = seo_meta(page, config, theme, { home: is_home(), post: is_post(), tag: is_tag(), category: is_category() }) -%}
 {%- set navClass = 'head--sticky' if theme.nav and theme.nav.sticky else 'head' -%}
+{# 首页封面满屏，导航转为透明浮层压在画面上（样式在 index.styl） #}
+{%- set navClass = navClass ~ (' head--overlay' if is_home() else '') -%}
 <html lang="{{ page.language or config.language or 'zh-CN' }}">
   <head>
     <meta charset="utf-8"/>

@@ -11,6 +11,8 @@ hexo.extend.generator.register('home-fallback', locals => {
   return {
     path: 'index.html',
     layout: 'index',
-    data: {}
+    // __index 让 is_home() 为真（hexo-generator-index 对分页首页也带此标记），
+    // SEO 与首页专属样式依赖它。
+    data: { __index: true }
   };
 });

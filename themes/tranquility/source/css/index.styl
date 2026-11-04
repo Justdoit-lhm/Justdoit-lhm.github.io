@@ -25,40 +25,34 @@ for item in hexo-config('timeline.items') {
   bottom: 0;
 }
 
-.wall-bg::before {
-  @extend .wall-bg;
-  z-index: 2;
-  content: ' ';
-  /* 背景是「昼夜鹿鸣」动画：面纱只负责压住画面保证标题可读，
-     留出足够透明度让昼夜交替清晰可见（见下方 .wall-scene）。 */
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: background-color 150ms ease;
+/* 首页封面全幅满屏：冲破 .wall 的 1200px 容器与 90px 导航让位，
+   视口即画框。导航浮在画面上（见下方 .head--overlay），
+   不再叠白纱——可读性由标题/导航的白色光晕负责。 */
+.wall-index {
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
 }
 
-/* 静止时画面退为水彩般的底子，悬停时揭开幕布看完整动画；触屏没有
-   hover，取一个折中透明度。 */
-@media (hover: hover) and (pointer: fine) {
-  .wall-main:hover+.wall-bg::before {
-    background-color: rgba(255, 255, 255, 0.32);
-  }
+/* 导航条只在首页转为透明浮层：绝对定位让它脱流，正文从 y=0 起排。 */
+.head--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
-@media (hover: none) {
-  .wall-bg::before {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+/* 夜帧天空很暗，深色导航文字直接压画面会和星空糊在一起，
+   给与标题同款的白色光晕。 */
+.head--overlay .nav-menu-item {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 2px 16px rgba(255, 255, 255, 0.75);
 }
 
 .wall-main {
   position: relative;
   text-align: center;
   z-index: 3;
-}
-
-/* Only the home cover keeps a floor; category and moments pages reuse
-   .wall for their header and must stay content-sized. */
-.wall-index {
-  min-height: 440px;
 }
 
 .wall-title {
