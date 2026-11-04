@@ -5,4 +5,6 @@ db.json
 node_modules/
 public/
 .deploy*/
+# 壁纸原片等大文件的暂存区（不进 git，也不发布：hexo 侧见 _config.yml ignore）
+source/upload/
 _multiconfig.yml

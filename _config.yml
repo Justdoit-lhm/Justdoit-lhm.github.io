@@ -104,6 +104,11 @@ pagination_dir: page
 include:
 exclude:
 ignore:
+  # source/upload/ 是壁纸原片等大文件的暂存区：不渲染、不拷贝进 public/。
+  # hexo 的 ignore 按绝对路径匹配（box/index.js isIgnoreMatch(fullPath)），
+  # 所以必须用 **/upload 前缀，写 upload/** 匹配不到。
+  - '**/upload'
+  - '**/upload/**'
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
