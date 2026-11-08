@@ -1,5 +1,19 @@
 {
   "username": "qfmymbx",
-  "updated": null,
-  "tweets": []
+  "updated": "2026-11-08T10:27:30.376Z",
+  "tweets": [
+    {
+      "id": "2118759824024584698",
+      "url": "https://x.com/qfmymbx/status/2118759824024584698",
+      "text": "最近似乎找到了一种适合自己的节奏😺，继续保持！",
+      "createdAt": "2026-11-06T17:38:01.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HWdYiwjbYAA8_M0.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    }
+  ]
 }
